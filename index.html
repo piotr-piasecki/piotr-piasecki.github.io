@@ -4,6 +4,14 @@
 <h1>Hello World!</h1>
 <p>I'm hosted with GitHub Pages.</p>
 
+<form onsubmit="submitForm()">
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname" value="your first name"><br>
+    <label for="accountName">Account name:</label><br>
+    <input type="text" id="accountName" name="accountName" value="your account name"><br><br>
+    <input type="submit" value="Submit">
+</form>
+
 <style type="text/css">
     .embeddedServiceHelpButton .helpButton .uiButton {
         background-color: #005290;
@@ -13,28 +21,6 @@
     .embeddedServiceHelpButton .helpButton .uiButton:focus {
         outline: 1px solid #005290;
     }
-</style>
-
-<!-- Start of Invitations -->
-<div class="embeddedServiceInvitation" id="snapins_invite" inert="true" aria-live="assertive" role="dialog"
-     aria-atomic="true">
-    <div class="embeddedServiceInvitationHeader" aria-labelledby="snapins_titletext"
-         aria-describedby="snapins_bodytext">
-        <img id="embeddedServiceAvatar"></img>
-        <span class="embeddedServiceTitleText" id="snapins_titletext">Need help?</span>
-        <button type="button" id="closeInvite" class="embeddedServiceCloseIcon" aria-label="Exit invitation">&times;
-        </button>
-    </div>
-    <div class="embeddedServiceInvitationBody">
-        <p id="snapins_bodytext">How can we help you?</p>
-    </div>
-    <div class="embeddedServiceInvitationFooter" aria-describedby="snapins_bodytext">
-        <button type="button" class="embeddedServiceActionButton" id="rejectInvite">Close</button>
-        <button type="button" class="embeddedServiceActionButton" id="acceptInvite">Start Chat</button>
-    </div>
-</div>
-
-<style type="text/css">
     #snapins_invite {
         background-color: #FFFFFF;
         font-family: "Arial", sans-serif;
@@ -180,6 +166,31 @@
     }
 </style>
 
+<div class="embeddedServiceInvitation" id="snapins_invite" inert="true" aria-live="assertive" role="dialog"
+     aria-atomic="true">
+    <div class="embeddedServiceInvitationHeader" aria-labelledby="snapins_titletext"
+         aria-describedby="snapins_bodytext">
+        <img id="embeddedServiceAvatar"></img>
+        <span class="embeddedServiceTitleText" id="snapins_titletext">Need help?</span>
+        <button type="button" id="closeInvite" class="embeddedServiceCloseIcon" aria-label="Exit invitation">&times;
+        </button>
+    </div>
+    <div class="embeddedServiceInvitationBody">
+        <p id="snapins_bodytext">How can we help you?</p>
+    </div>
+    <div class="embeddedServiceInvitationFooter" aria-describedby="snapins_bodytext">
+        <button type="button" class="embeddedServiceActionButton" id="rejectInvite">Close</button>
+        <button type="button" class="embeddedServiceActionButton" id="acceptInvite">Start Chat</button>
+    </div>
+</div>
+
+<script>
+    function submitFrom() {
+        window.fname = document.getElementById("fname").value;
+        window.accountName = document.getElementById("accountName").value;
+    }
+</script>
+
 <script type="text/javascript">
     (function() {
         document.getElementById('closeInvite').onclick = function() {
@@ -206,6 +217,15 @@
     var initESW = function(gslbBaseURL) {
         embedded_svc.settings.displayHelpButton = true; //Or false
         embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+
+        embedded_svc.settings.extraPrechatFormDetails = [
+            {
+                "label":"Text",
+                "transcriptFields": ["Account_name__c"],
+                "value" : window.accountName,
+                "displayToAgent": true
+            }
+        ];
 
         //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
         //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
