@@ -186,8 +186,8 @@
 
 <script>
     function submitFrom() {
-        window.fnameString = document.getElementById("fname").value;
-        window.accountNameString = document.getElementById("accountName").value;
+        fnameString = document.getElementById("fname").value;
+        accountNameString = document.getElementById("accountName").value;
     }
 </script>
 
@@ -238,13 +238,13 @@
         embedded_svc.settings.extraPrechatFormDetails = [
             {
                 'label': 'First Name',
-                'value': window.fnameString,
+                'value': fnameString,
                 'displayToAgent': true
             },
             {
                 "label":"Text",
                 "transcriptFields": ["Account_name__c"],
-                "value" : window.accountNameString,
+                "value" : accountNameString,
                 "displayToAgent": true
             }
         ];
