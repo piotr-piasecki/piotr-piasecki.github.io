@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html title="Ansell messaging">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+</head>
 <body>
 <h1>Hello World!</h1>
 <p>I'm hosted with GitHub Pages.</p>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
 <script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
 <script type='text/javascript'>
     var initESW = function(gslbBaseURL) {
-        // Required if you want labels in a language that’s different from your user’s context.
-        //embedded_svc.menu.settings.language = ''; //For example, enter 'en' or 'en-US'
-
         embedded_svc.menu.init(
             'https://myansell--ppiasdev.sandbox.my.salesforce.com',
             'https://d.la1-c1cs-ukb.salesforceliveagent.com/chat',
@@ -31,25 +32,25 @@
     }
 </script>
 
-<script type='text/javascript'>
-    function initEmbeddedMessaging() {
-        try {
-            embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+<!--<script type='text/javascript'>-->
+<!--    function initEmbeddedMessaging() {-->
+<!--        try {-->
+<!--            embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'-->
 
-            embeddedservice_bootstrap.init(
-                '00Dp0000000AEjO',
-                'Ansell_messaging',
-                'https://myansell--ppiasdev.sandbox.my.site.com/ESWAnsellmessaging1691666597277',
-                {
-                    scrt2URL: 'https://myansell--ppiasdev.sandbox.my.salesforce-scrt.com'
-                }
-            );
-        } catch (err) {
-            console.error('Error loading Embedded Messaging: ', err);
-        }
-    };
-</script>
-<script type='text/javascript' src='https://myansell--ppiasdev.sandbox.my.site.com/ESWAnsellmessaging1691666597277/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<!--            embeddedservice_bootstrap.init(-->
+<!--                '00Dp0000000AEjO',-->
+<!--                'Ansell_messaging',-->
+<!--                'https://myansell&#45;&#45;ppiasdev.sandbox.my.site.com/ESWAnsellmessaging1691666597277',-->
+<!--                {-->
+<!--                    scrt2URL: 'https://myansell&#45;&#45;ppiasdev.sandbox.my.salesforce-scrt.com'-->
+<!--                }-->
+<!--            );-->
+<!--        } catch (err) {-->
+<!--            console.error('Error loading Embedded Messaging: ', err);-->
+<!--        }-->
+<!--    };-->
+<!--</script>-->
+<!--<script type='text/javascript' src='https://myansell&#45;&#45;ppiasdev.sandbox.my.site.com/ESWAnsellmessaging1691666597277/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>-->
 
 
 <!--<form onsubmit="submitForm()">-->
