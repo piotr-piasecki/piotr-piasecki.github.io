@@ -10,6 +10,41 @@
 <h1>Ansell messaging!</h1>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 
+<script type='text/javascript'>
+    function initEmbeddedMessaging() {
+        try {
+            embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+            window.addEventListener("onEmbeddedMessagingReady", () => {
+                console.log( "Inside Prechat API!!!" );
+                embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(
+                    {
+                        "Account_name" : "Western Digital"
+                    }
+                );
+                embeddedservice_bootstrap.settings.extraPrechatFormDetails = [{
+                    "label": "First Name",
+                    "value": "",
+                    "displayToAgent": true
+                }];
+            });
+
+            embeddedservice_bootstrap.init(
+                '00Dp0000000AEjO',
+                'Ansell_messaging',
+                'https://myansell--ppiasdev.sandbox.my.site.com/ESWAnsellmessaging1691666597277',
+                {
+                    scrt2URL: 'https://myansell--ppiasdev.sandbox.my.salesforce-scrt.com'
+                }
+            );
+        } catch (err) {
+            console.error('Error loading Embedded Messaging: ', err);
+        }
+    };
+</script>
+<script type='text/javascript' src='https://myansell--ppiasdev.sandbox.my.site.com/ESWAnsellmessaging1691666597277/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+
 <!--<script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>-->
 <!--<script type='text/javascript'>-->
 <!--    var initESW = function(gslbBaseURL) {-->
@@ -37,39 +72,6 @@
 <!--    }-->
 <!--</script>-->
 
-<script type='text/javascript'>
-    function initEmbeddedMessaging() {
-        try {
-            embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
-
-            window.addEventListener("onEmbeddedMessagingReady", () => {
-                console.log( "Inside Prechat API!!!" );
-                embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(
-                    {
-                        "Account_name" : "Wes"
-                    }
-                );
-                embeddedservice_bootstrap.settings.extraPrechatFormDetails = [{
-                    "label": "First Name",
-                    "value": "",
-                    "displayToAgent": true
-                }];
-            });
-
-            embeddedservice_bootstrap.init(
-                '00Dp0000000AEjO',
-                'Ansell_messaging',
-                'https://myansell--ppiasdev.sandbox.my.site.com/ESWAnsellmessaging1691666597277',
-                {
-                    scrt2URL: 'https://myansell--ppiasdev.sandbox.my.salesforce-scrt.com'
-                }
-            );
-        } catch (err) {
-            console.error('Error loading Embedded Messaging: ', err);
-        }
-    };
-</script>
-<script type='text/javascript' src='https://myansell--ppiasdev.sandbox.my.site.com/ESWAnsellmessaging1691666597277/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 </body>
 </html>
