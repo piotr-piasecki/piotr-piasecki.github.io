@@ -22,6 +22,17 @@
                         "Account_name" : "Western Digital"
                     }
                 );
+                this.dispatchEvent(
+                    new CustomEvent("prechatsubmit", {
+                        detail: {
+                            value: {
+                                firstName: "bob",
+                                lastname: "jones",
+                                email: "bob.jones@gmail.com",
+                            },
+                        },
+                    }),
+                );
                 // embeddedservice_bootstrap.settings.extraPrechatFormDetails = [{
                 //     "label": "First Name",
                 //     "value": "",
