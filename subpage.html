@@ -35,6 +35,14 @@
                 "url_path" : urlPath
             };
 
+            window.addEventListener('message', (event) => {
+                if (event.data.method === 'ESW_APP_PRECHAT_SUBMIT') {
+                    console.log('>>> event.data.data._firstName: ' + event.data.data._firstName);
+                    console.log('>>> event.data.data._lastName: ' + event.data.data._lastName);
+                    console.log('>>> event.data.data._email: ' + event.data.data._email);
+                }
+            });
+
             embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(hiddenPrechatFields);
 
             if (userId) {
