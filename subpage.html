@@ -7,10 +7,6 @@
     <script>
         // When MIAW is ready, check if the user is logged in; if so, then hide form and add a listener for 'ESW_APP_PRECHAT_FORM' to fill form with placeholder data
         window.addEventListener("onEmbeddedMessagingReady", () => {
-            // let userId = $A.get(
-            //     '$SObjectType.CurrentUser.Id'
-            // );
-
             let userId = null;
 
             const url = new URL(window.location.href);
@@ -35,13 +31,32 @@
                 "url_path" : urlPath
             };
 
-            window.addEventListener('message', (event) => {
-                if (event.data.method === 'ESW_APP_PRECHAT_SUBMIT') {
-                    console.log('>>> event.data.data._firstName: ' + event.data.data._firstName);
-                    console.log('>>> event.data.data._lastName: ' + event.data.data._lastName);
-                    console.log('>>> event.data.data._email: ' + event.data.data._email);
-                }
-            });
+            let firstName = sessionStorage.getItem('chasitorFirstName');
+            let lastName = sessionStorage.getItem('chasitorLastName');
+            let email = sessionStorage.getItem('chasitorEmail');
+
+            if (firstName && lastName && email) {
+                embeddedservice_bootstrap.settings.embeddedServiceConfig.forms[0].formFields = [];
+                window.addEventListener('message', (event) => {
+                    if (event.data.method === 'ESW_APP_PRECHAT_SUBMIT') {
+                        event.data.data._firstName = firstName;
+                        event.data.data._lastName = lastName;
+                        event.data.data._email = email;
+                    }
+                });
+            } else {
+                window.addEventListener('message', (event) => {
+                    if (event.data.method === 'ESW_APP_PRECHAT_SUBMIT') {
+                        console.log('>>> saving following in the session storage: ')
+                        console.log('>>> event.data.data._firstName: ' + event.data.data._firstName);
+                        console.log('>>> event.data.data._lastName: ' + event.data.data._lastName);
+                        console.log('>>> event.data.data._email: ' + event.data.data._email);
+                        sessionStorage.setItem('chasitorFirstName', event.data.data._firstName);
+                        sessionStorage.setItem('chasitorLastName', event.data.data._lastName);
+                        sessionStorage.setItem('chasitorEmail', event.data.data._email);
+                    }
+                });
+            }
 
             embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(hiddenPrechatFields);
 
