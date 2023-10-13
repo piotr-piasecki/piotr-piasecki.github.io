@@ -7,9 +7,11 @@
     <script>
         // When MIAW is ready, check if the user is logged in; if so, then hide form and add a listener for 'ESW_APP_PRECHAT_FORM' to fill form with placeholder data
         window.addEventListener("onEmbeddedMessagingReady", () => {
-            let userId = $A.get(
-                '$SObjectType.CurrentUser.Id'
-            );
+            // let userId = $A.get(
+            //     '$SObjectType.CurrentUser.Id'
+            // );
+
+            let userId = null;
 
             const url = new URL(window.location.href);
             let urlDomain = url.hostname;
