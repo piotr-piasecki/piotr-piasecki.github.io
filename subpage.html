@@ -36,6 +36,11 @@
             let email = sessionStorage.getItem('chasitorEmail');
 
             if (firstName && lastName && email) {
+                console.log('>>> retrieved following from the session storage: ')
+                sessionStorage.setItem('chasitorFirstName', firstName);
+                sessionStorage.setItem('chasitorLastName', lastName);
+                sessionStorage.setItem('chasitorEmail', email);
+
                 embeddedservice_bootstrap.settings.embeddedServiceConfig.forms[0].formFields = [];
                 window.addEventListener('message', (event) => {
                     if (event.data.method === 'ESW_APP_PRECHAT_SUBMIT') {
