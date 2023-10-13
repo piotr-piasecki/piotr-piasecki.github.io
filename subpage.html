@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html title="Messaging subpage" lang="en">
 <head>
-    <title>Ansell messaging</title>
+    <title>Ansell messaging subpage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+    <script>
+        // When MIAW is ready, check if the user is logged in; if so, then hide form and add a listener for 'ESW_APP_PRECHAT_FORM' to fill form with placeholder data
+        window.addEventListener("onEmbeddedMessagingReady", () => {
+            let userId = $A.get(
+                '$SObjectType.CurrentUser.Id'
+            );
+
+            const url = new URL(window.location.href);
+            let urlDomain = url.hostname;
+            let urlPath = url.pathname;
+
+            let urlParams = new URLSearchParams(window.location.search);
+            let utmSource = urlParams.get('utm_source');
+            let utmMedium = urlParams.get('utm_medium');
+            let utmCampaign = urlParams.get('utm_campaign');
+            let utmKeyword = urlParams.get('utm_keyword');
+            let utmContent = urlParams.get('utm_content');
+
+            let hiddenPrechatFields = {
+                "User_ID" : userId,
+                "utm_source" : utmSource,
+                "utm_medium" : utmMedium,
+                "utm_campaign" : utmCampaign,
+                "utm_keyword" : utmKeyword,
+                "utm_content" : utmContent,
+                "url_domain" : urlDomain,
+                "url_path" : urlPath
+            };
+
+            embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(hiddenPrechatFields);
+
+            if (userId) {
+                embeddedservice_bootstrap.settings.embeddedServiceConfig.forms[0].formFields = [];
+                window.addEventListener('message', (event) => {
+                    if (event.data.method === 'ESW_APP_PRECHAT_SUBMIT') {
+                        event.data.data._firstName = 'Placeholder';
+                        event.data.data._lastName = 'Placeholder';
+                        event.data.data._email = 'placeholder@mail.com';
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
 
-<h1>Ansell messaging!</h1>
+<h1>Ansell messaging subpage!</h1>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-
-<script>
-    // When MIAW is ready, check if the user is logged in; if so, then hide form and add a listener for 'ESW_APP_PRECHAT_FORM' to fill form with placeholder data
-    window.addEventListener("onEmbeddedMessagingReady", () => {
-        let userId = $A.get(
-            '$SObjectType.CurrentUser.Id'
-        );
-
-        const url = new URL(window.location.href);
-        let urlDomain = url.hostname;
-        let urlPath = url.pathname;
-
-        let urlParams = new URLSearchParams(window.location.search);
-        let utmSource = urlParams.get('utm_source');
-        let utmMedium = urlParams.get('utm_medium');
-        let utmCampaign = urlParams.get('utm_campaign');
-        let utmKeyword = urlParams.get('utm_keyword');
-        let utmContent = urlParams.get('utm_content');
-
-        let hiddenPrechatFields = {
-            "User_ID" : userId,
-            "utm_source" : utmSource,
-            "utm_medium" : utmMedium,
-            "utm_campaign" : utmCampaign,
-            "utm_keyword" : utmKeyword,
-            "utm_content" : utmContent,
-            "url_domain" : urlDomain,
-            "url_path" : urlPath
-        };
-
-        embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields(hiddenPrechatFields);
-
-        if (userId) {
-            embeddedservice_bootstrap.settings.embeddedServiceConfig.forms[0].formFields = [];
-            window.addEventListener('message', (event) => {
-                if (event.data.method === 'ESW_APP_PRECHAT_SUBMIT') {
-                    event.data.data._firstName = 'Placeholder';
-                    event.data.data._lastName = 'Placeholder';
-                    event.data.data._email = 'placeholder@mail.com';
-                }
-            });
-        }
-    });
-</script>
 
 <script type='text/javascript'>
     function initEmbeddedMessaging() {
