@@ -36,10 +36,10 @@
             let email = sessionStorage.getItem('chasitorEmail');
 
             if (firstName && lastName && email) {
-                console.log('>>> retrieved following from the session storage: ')
-                sessionStorage.setItem('chasitorFirstName', firstName);
-                sessionStorage.setItem('chasitorLastName', lastName);
-                sessionStorage.setItem('chasitorEmail', email);
+                console.log('>>> retrieved following from the session storage: ');
+                console.log('chasitorFirstName', firstName);
+                console.log('chasitorLastName', lastName);
+                console.log('chasitorEmail', email);
 
                 embeddedservice_bootstrap.settings.embeddedServiceConfig.forms[0].formFields = [];
                 window.addEventListener('message', (event) => {
